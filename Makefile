@@ -38,5 +38,8 @@ clean:
 	rm -rf ${VENV}
 	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
-run:
+debug:
 	flask run --debug
+
+run:
+	${ACTIVATE} gunicorn purl_fyi:app -u nobody -g nogroup --bind :8000 --timeout 600 --workers 8""
